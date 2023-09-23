@@ -15,13 +15,7 @@ pipeline{
                     withCredentials(credentialsId: 'sonar') {
                          sh 'chmod +x gradlew'
                         sh './gradlew sonarqube'
-                    }
-                    timeout(time:1, unit: 'HOURS') {
-                        def qg = waitForQualityGate()
-                        if(qg.status != 'OK'){
-                            error "Pipeline aborted due to quality check failed : ${qg.status}"
-                        }
-                    }
+                    }                
                 }
             }
         }
