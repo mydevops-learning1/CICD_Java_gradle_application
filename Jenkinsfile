@@ -13,8 +13,7 @@ pipeline{
             steps{
                 script{
                     withCredentials([string(credentialsId: 'sonar', variable: 'SONAR_AUTH_TOKEN')]) {
-                        ##sh 'chmod +x gradlew'
-                        ##sh './gradlew sonarqube'
+                       
                         mvn sonar:sonar -Dsonar.login=$SONAR_AUTH_TOKEN -Dsonar.host.url=${SONAR_URL}'
                     }
                     timeout(time:1, unit: 'HOURS') {
